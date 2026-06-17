@@ -1,0 +1,84 @@
+{
+  "app": {
+    "title": "Factuurgenerator",
+    "tagline": "Gratis, privacyvriendelijk, geen account nodig",
+    "download": "Download PDF",
+    "exportData": "Exporteer je gegevens als JSON-bestand (back-up / ander apparaat)",
+    "importData": "Importeer gegevens uit een eerder geëxporteerd JSON-bestand",
+    "privacyNote": "Al je gegevens blijven in je browser. Er wordt niets verstuurd."
+  },
+  "settings": {
+    "uiLanguage": "Taal interface",
+    "documentLanguage": "Taal factuur",
+    "currency": "Valuta",
+    "taxRegion": "Belastingregio",
+    "theme": "Thema",
+    "themeLight": "Licht",
+    "themeDark": "Donker",
+    "themeSystem": "Systeem"
+  },
+  "company": {
+    "heading": "Jouw bedrijf",
+    "name": "Bedrijfsnaam",
+    "email": "E-mail",
+    "phone": "Telefoon",
+    "website": "Website",
+    "vatId": "BTW-nummer",
+    "cocNumber": "KvK-nummer",
+    "iban": "IBAN",
+    "bic": "BIC",
+    "logo": "Logo",
+    "logoUpload": "Logo uploaden",
+    "logoRemove": "Verwijderen"
+  },
+  "client": {
+    "heading": "Klant",
+    "name": "Naam",
+    "email": "E-mail",
+    "vatId": "BTW-nummer"
+  },
+  "address": {
+    "line1": "Adres",
+    "line2": "Adres (regel 2)",
+    "postalCode": "Postcode",
+    "city": "Plaats",
+    "country": "Land"
+  },
+  "invoice": {
+    "heading": "Factuur",
+    "number": "Factuurnummer",
+    "issueDate": "Factuurdatum",
+    "supplyDate": "Leveringsdatum",
+    "dueDate": "Vervaldatum",
+    "reverseCharge": "BTW verlegd",
+    "notes": "Opmerkingen",
+    "items": "Regels",
+    "description": "Omschrijving",
+    "quantity": "Aantal",
+    "unit": "Eenheid",
+    "unitPrice": "Stukprijs",
+    "taxRate": "BTW %",
+    "lineTotal": "Totaal",
+    "addItem": "Regel toevoegen",
+    "removeItem": "Verwijderen"
+  },
+  "totals": {
+    "net": "Subtotaal",
+    "vat": "BTW",
+    "total": "Totaal",
+    "reverseChargeNote": "BTW verlegd naar de afnemer."
+  },
+  "doc": {
+    "invoice": "FACTUUR",
+    "billTo": "Factuuradres",
+    "from": "Van",
+    "number": "Factuurnr.",
+    "issueDate": "Factuurdatum",
+    "dueDate": "Vervaldatum",
+    "vatId": "BTW-nr.",
+    "cocNumber": "KvK-nr.",
+    "contact": "Contact",
+    "payTo": "Betaling aan"
+  },
+  "disclaimer": "Deze tool is hulpmiddel en geeft geen fiscaal advies. Controleer of de factuur aan de geldende regels voldoet."
+}

@@ -1,0 +1,84 @@
+{
+  "app": {
+    "title": "Invoice Generator",
+    "tagline": "Free, privacy-first, no account needed",
+    "download": "Download PDF",
+    "exportData": "Export your data as a JSON file (backup / move to another device)",
+    "importData": "Import data from a previously exported JSON file",
+    "privacyNote": "All your data stays in your browser. Nothing is sent anywhere."
+  },
+  "settings": {
+    "uiLanguage": "Interface language",
+    "documentLanguage": "Invoice language",
+    "currency": "Currency",
+    "taxRegion": "Tax region",
+    "theme": "Theme",
+    "themeLight": "Light",
+    "themeDark": "Dark",
+    "themeSystem": "System"
+  },
+  "company": {
+    "heading": "Your company",
+    "name": "Company name",
+    "email": "Email",
+    "phone": "Phone",
+    "website": "Website",
+    "vatId": "VAT number",
+    "cocNumber": "Company reg. no.",
+    "iban": "IBAN",
+    "bic": "BIC",
+    "logo": "Logo",
+    "logoUpload": "Upload logo",
+    "logoRemove": "Remove"
+  },
+  "client": {
+    "heading": "Client",
+    "name": "Name",
+    "email": "Email",
+    "vatId": "VAT number"
+  },
+  "address": {
+    "line1": "Address",
+    "line2": "Address (line 2)",
+    "postalCode": "Postal code",
+    "city": "City",
+    "country": "Country"
+  },
+  "invoice": {
+    "heading": "Invoice",
+    "number": "Invoice number",
+    "issueDate": "Issue date",
+    "supplyDate": "Supply date",
+    "dueDate": "Due date",
+    "reverseCharge": "Reverse charge",
+    "notes": "Notes",
+    "items": "Line items",
+    "description": "Description",
+    "quantity": "Qty",
+    "unit": "Unit",
+    "unitPrice": "Unit price",
+    "taxRate": "VAT %",
+    "lineTotal": "Total",
+    "addItem": "Add line",
+    "removeItem": "Remove"
+  },
+  "totals": {
+    "net": "Subtotal",
+    "vat": "VAT",
+    "total": "Total",
+    "reverseChargeNote": "VAT reverse charged to the customer."
+  },
+  "doc": {
+    "invoice": "INVOICE",
+    "billTo": "Bill to",
+    "from": "From",
+    "number": "Invoice no.",
+    "issueDate": "Issue date",
+    "dueDate": "Due date",
+    "vatId": "VAT no.",
+    "cocNumber": "Reg. no.",
+    "contact": "Contact",
+    "payTo": "Payment to"
+  },
+  "disclaimer": "This tool is an aid and does not provide tax advice. Verify the invoice meets the applicable rules."
+}
