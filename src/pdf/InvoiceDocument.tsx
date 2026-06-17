@@ -124,6 +124,7 @@ export function InvoiceDocument({ company, invoice, settings, t }: Props) {
                 caddr.country,
               ]}
             />
+            {invoice.client.email ? <Text>{invoice.client.email}</Text> : null}
             {invoice.client.vatId ? (
               <Text>
                 {t('doc.vatId')} {invoice.client.vatId}

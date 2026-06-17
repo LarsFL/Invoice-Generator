@@ -4,6 +4,9 @@ import { newLineItem } from '../lib/defaults'
 import type { LineItem } from '../types'
 import { Field, FieldRow, Section } from './Field'
 
+// Covers both supported jurisdictions: NL (21/9/0) and UK (20/5/0).
+const VAT_RATES = [0, 5, 9, 20, 21]
+
 export function InvoiceForm() {
   const { t } = useTranslation()
   const invoice = useStore((s) => s.invoice)
@@ -47,7 +50,16 @@ export function InvoiceForm() {
               <Field label={t('invoice.quantity')} type="number" value={item.quantity} onChange={(v) => updateItem(item.id, { quantity: Number(v) })} />
               <Field label={t('invoice.unit')} value={item.unit} onChange={(v) => updateItem(item.id, { unit: v })} />
               <Field label={t('invoice.unitPrice')} type="number" value={item.unitPrice} onChange={(v) => updateItem(item.id, { unitPrice: Number(v) })} />
-              <Field label={t('invoice.taxRate')} type="number" value={item.taxRate} onChange={(v) => updateItem(item.id, { taxRate: Number(v) })} />
+              <label className="field">
+                <span>{t('invoice.taxRate')}</span>
+                <select value={item.taxRate} onChange={(e) => updateItem(item.id, { taxRate: Number(e.target.value) })}>
+                  {(VAT_RATES.includes(item.taxRate) ? VAT_RATES : [...VAT_RATES, item.taxRate].sort((a, b) => a - b)).map((r) => (
+                    <option key={r} value={r}>
+                      {r}%
+                    </option>
+                  ))}
+                </select>
+              </label>
             </div>
             {invoice.items.length > 1 ? (
               <button type="button" className="link-danger" onClick={() => removeItem(item.id)}>

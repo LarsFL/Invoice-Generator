@@ -36,12 +36,21 @@ export function newLineItem() {
   }
 }
 
+/** Local-time yyyy-mm-dd (avoids the UTC shift of toISOString). */
+function toISODate(d: Date): string {
+  const tz = d.getTimezoneOffset() * 60000
+  return new Date(d.getTime() - tz).toISOString().slice(0, 10)
+}
+
 export function defaultInvoice(): Invoice {
+  const today = new Date()
+  const due = new Date(today)
+  due.setDate(due.getDate() + 30) // 30-day payment term
   return {
     number: '2026-001',
-    issueDate: '',
+    issueDate: toISODate(today),
     supplyDate: '',
-    dueDate: '',
+    dueDate: toISODate(due),
     client: { name: '', address: emptyAddress(), vatId: '', email: '' },
     items: [newLineItem()],
     reverseCharge: false,
