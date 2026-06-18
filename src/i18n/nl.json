@@ -3,6 +3,8 @@
     "title": "Factuurgenerator",
     "tagline": "Gratis, privacyvriendelijk, geen account nodig",
     "download": "Download PDF",
+    "generating": "Bezig…",
+    "loadingPreview": "Voorbeeld laden…",
     "exportData": "Exporteer je gegevens als JSON-bestand (back-up / ander apparaat)",
     "importData": "Importeer gegevens uit een eerder geëxporteerd JSON-bestand",
     "privacyNote": "Al je gegevens blijven in je browser. Er wordt niets verstuurd."

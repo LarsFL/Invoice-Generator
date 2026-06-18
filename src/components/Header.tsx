@@ -1,11 +1,9 @@
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { pdf } from '@react-pdf/renderer'
 import { Languages, FileText, Coins, SunMoon, Download, Upload, FileDown, Settings } from 'lucide-react'
 import i18n from '../i18n'
 import { useStore } from '../store'
 import type { ExportBundle } from '../store'
-import { InvoiceDocument } from '../pdf/InvoiceDocument'
 
 const CURRENCIES = ['EUR', 'GBP', 'USD', 'CHF', 'SEK', 'NOK', 'DKK', 'PLN']
 
@@ -13,7 +11,28 @@ export function Header() {
   const { t } = useTranslation()
   const { company, invoice, settings, setSettings, hydrate } = useStore()
   const importRef = useRef<HTMLInputElement>(null)
+  const controlsRef = useRef<HTMLDivElement>(null)
   const [menuOpen, setMenuOpen] = useState(false)
+  const [busy, setBusy] = useState(false)
+
+  // Close the mobile settings panel on outside-click or Escape.
+  useEffect(() => {
+    if (!menuOpen) return
+    function onPointerDown(e: PointerEvent) {
+      if (controlsRef.current && !controlsRef.current.contains(e.target as Node)) {
+        setMenuOpen(false)
+      }
+    }
+    function onKeyDown(e: KeyboardEvent) {
+      if (e.key === 'Escape') setMenuOpen(false)
+    }
+    document.addEventListener('pointerdown', onPointerDown)
+    document.addEventListener('keydown', onKeyDown)
+    return () => {
+      document.removeEventListener('pointerdown', onPointerDown)
+      document.removeEventListener('keydown', onKeyDown)
+    }
+  }, [menuOpen])
 
   function changeUiLanguage(lng: string) {
     setSettings({ uiLanguage: lng })
@@ -21,16 +40,26 @@ export function Header() {
   }
 
   async function downloadPdf() {
-    const docT = i18n.getFixedT(settings.documentLanguage)
-    const blob = await pdf(
-      <InvoiceDocument company={company} invoice={invoice} settings={settings} t={docT} />,
-    ).toBlob()
-    const url = URL.createObjectURL(blob)
-    const a = document.createElement('a')
-    a.href = url
-    a.download = `${invoice.number || 'invoice'}.pdf`
-    a.click()
-    URL.revokeObjectURL(url)
+    setBusy(true)
+    try {
+      // Load react-pdf on demand so it stays out of the initial bundle.
+      const [{ pdf }, { InvoiceDocument }] = await Promise.all([
+        import('@react-pdf/renderer'),
+        import('../pdf/InvoiceDocument'),
+      ])
+      const docT = i18n.getFixedT(settings.documentLanguage)
+      const blob = await pdf(
+        <InvoiceDocument company={company} invoice={invoice} settings={settings} t={docT} />,
+      ).toBlob()
+      const url = URL.createObjectURL(blob)
+      const a = document.createElement('a')
+      a.href = url
+      a.download = `${invoice.number || 'invoice'}.pdf`
+      a.click()
+      URL.revokeObjectURL(url)
+    } finally {
+      setBusy(false)
+    }
   }
 
   function exportData() {
@@ -66,7 +95,7 @@ export function Header() {
         <span className="tagline">{t('app.tagline')}</span>
       </div>
 
-      <div className="controls">
+      <div className="controls" ref={controlsRef}>
         <a
           className="icon-link"
           href="https://github.com/LarsFL/Invoice-Generator"
@@ -140,8 +169,8 @@ export function Header() {
         <input ref={importRef} type="file" accept="application/json" hidden onChange={(e) => importData(e.target.files?.[0])} />
         </div>
 
-        <button type="button" className="primary" onClick={downloadPdf}>
-          <FileDown size={16} aria-hidden /> {t('app.download')}
+        <button type="button" className="primary" onClick={downloadPdf} disabled={busy}>
+          <FileDown size={16} aria-hidden /> {busy ? t('app.generating') : t('app.download')}
         </button>
       </div>
     </header>

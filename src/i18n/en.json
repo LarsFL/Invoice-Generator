@@ -3,6 +3,8 @@
     "title": "Invoice Generator",
     "tagline": "Free, privacy-first, no account needed",
     "download": "Download PDF",
+    "generating": "Generating…",
+    "loadingPreview": "Loading preview…",
     "exportData": "Export your data as a JSON file (backup / move to another device)",
     "importData": "Import data from a previously exported JSON file",
     "privacyNote": "All your data stays in your browser. Nothing is sent anywhere."

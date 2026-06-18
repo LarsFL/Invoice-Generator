@@ -178,6 +178,14 @@ body {
 .preview iframe {
   border: 0;
 }
+.preview-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: #e6e8eb;
+  font-size: 0.85rem;
+}
 
 /* Cards */
 .card {
