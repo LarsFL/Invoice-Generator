@@ -51,6 +51,7 @@ body {
 
 /* Header */
 .app-header {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -110,10 +111,43 @@ body {
   border-radius: 8px;
   color: var(--muted);
   border: 1px solid transparent;
+  background: none;
+  cursor: pointer;
 }
 .icon-link:hover {
   color: var(--text);
   border-color: var(--border);
+}
+
+/* On desktop the settings group lays out inline within the controls.
+   The gear toggle is mobile-only. */
+.settings-group {
+  display: contents;
+}
+.menu-toggle {
+  display: none;
+}
+
+/* Segmented Edit / Preview switch (mobile only — rendered conditionally). */
+.segmented {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  gap: 0.3rem;
+  padding: 0.5rem 1rem;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+}
+.segmented button {
+  flex: 1;
+  padding: 0.55rem;
+  font-weight: 600;
+}
+.segmented button.active {
+  background: var(--accent);
+  color: var(--accent-text);
+  border-color: var(--accent);
 }
 
 /* Layout */
@@ -283,11 +317,52 @@ button.primary {
 }
 
 @media (max-width: 880px) {
+  /* Let the page scroll naturally instead of the desktop fixed app-shell. */
+  .app {
+    height: auto;
+    min-height: 100%;
+  }
   .layout {
     grid-template-columns: 1fr;
+    flex: none;
+    padding: 1rem;
+  }
+  .editor {
+    overflow: visible;
+    padding-right: 0;
   }
   .preview {
     position: relative;
-    height: 70vh;
+    height: calc(100dvh - 7.5rem);
+  }
+
+  /* Header: collapse settings behind the gear toggle. */
+  .menu-toggle {
+    display: inline-flex;
+  }
+  .settings-group {
+    display: none;
+    position: absolute;
+    top: calc(100% + 0.25rem);
+    right: 0.75rem;
+    z-index: 30;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.5rem;
+    padding: 0.75rem;
+    min-width: 210px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.22);
+  }
+  .settings-group.open {
+    display: flex;
+  }
+  .settings-group .control {
+    justify-content: space-between;
+  }
+  .settings-group button {
+    justify-content: center;
   }
 }

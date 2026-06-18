@@ -7,7 +7,12 @@
     "importData": "Importeer gegevens uit een eerder geëxporteerd JSON-bestand",
     "privacyNote": "Al je gegevens blijven in je browser. Er wordt niets verstuurd."
   },
+  "nav": {
+    "edit": "Bewerken",
+    "preview": "Voorbeeld"
+  },
   "settings": {
+    "menu": "Instellingen",
     "uiLanguage": "Taal interface",
     "documentLanguage": "Taal factuur",
     "currency": "Valuta",

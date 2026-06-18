@@ -7,7 +7,12 @@
     "importData": "Import data from a previously exported JSON file",
     "privacyNote": "All your data stays in your browser. Nothing is sent anywhere."
   },
+  "nav": {
+    "edit": "Edit",
+    "preview": "Preview"
+  },
   "settings": {
+    "menu": "Settings",
     "uiLanguage": "Interface language",
     "documentLanguage": "Invoice language",
     "currency": "Currency",
